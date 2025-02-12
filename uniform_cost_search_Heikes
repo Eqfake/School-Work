@@ -13,32 +13,32 @@
     "    answer = {node: {'cost': float('inf'), 'path': []} for node in goal}\n",
     "#     **************************************\n",
     "#     ******** Write your code here ********\n",
-    prio_queue = [(0, start)] #queue to store nodes
-    visited = {start:(0, None)}
+        prio_queue = [(0, start)] #queue to store nodes
+        visited = {start:(0, None)}
 
-    while prio_queue:
-        cost, Cnode = heapq.heappop(prio_queue) #pop node with lowest cost
-        if Cnode == goal:#test node see if it is goal
-            answer[Cnode]['cost'] = cost
-            answer[Cnode]['path'] = build_path(visited, start, Cnode)
-            return answer
+        while prio_queue:
+            cost, Cnode = heapq.heappop(prio_queue) #pop node with lowest cost
+            if Cnode == goal:#test node see if it is goal
+                answer[Cnode]['cost'] = cost
+                answer[Cnode]['path'] = build_path(visited, start, Cnode)
+                return answer
 
-        for neighbor, cost in graph[Cnode]: #explore neighbors 
-            Tcost = Cnode + cost
-            Ecost = cost.get((Cnode, neighbor), float('inf'))
-            if neighbor not in visited or Tcost < visted[neighbor][0]: # check if path is better than previous 
-                visited[neighbor] = (Tcost, Cnode)
-                heapq.heappush(prio_queuem, (Tcost, neighbor)) 
-    return answer
+            for neighbor, cost in graph[Cnode]: #explore neighbors 
+                Tcost = Cnode + cost
+                Ecost = cost.get((Cnode, neighbor), float('inf'))
+                if neighbor not in visited or Tcost < visted[neighbor][0]: # check if path is better than previous 
+                    visited[neighbor] = (Tcost, Cnode)
+                    heapq.heappush(prio_queuem, (Tcost, neighbor)) 
+        return answer
 
-def build_path(visted, start, goal):
-    path = []
-    current = goal
-    while current is not None:
-        path.append(current)
-        current = visted[current][1]
-    path.reverse()#return to start
-    return path
+    def build_path(visted, start, goal):
+        path = []
+        current = goal
+        while current is not None:
+            path.append(current)
+            current = visted[current][1]
+        path.reverse()#return to start
+        return path
          
     "#     **************************************\n",
     "\n",
@@ -125,3 +125,4 @@ def build_path(visted, start, goal):
  "nbformat": 4,
  "nbformat_minor": 5
 }
+
